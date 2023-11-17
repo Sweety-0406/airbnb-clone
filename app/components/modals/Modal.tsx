@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import {IoMdCloseCircleOutline} from 'react-icons/io';
 import Button from "../Button";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
+
 
 interface ModalProps {
     isOpen: boolean;
@@ -125,7 +125,7 @@ const Modal: React.FC<ModalProps> = ({
                         flex
                         justify-center
                         items-center
-                        p-6
+                        p-4
                         rounded-t
                         relative
                         border-b-[1px] 
@@ -141,7 +141,7 @@ const Modal: React.FC<ModalProps> = ({
                           onClick={handleClose}
                          >
 
-                          <IoMdCloseCircleOutline size={30}/>
+                          <IoMdCloseCircleOutline size={28}/>
                         </button>
                          <div className="text-lg font-semibold">
                             {title}
@@ -152,7 +152,7 @@ const Modal: React.FC<ModalProps> = ({
                         {body}
                       </div>
                       {/* FOOTER */}
-                      <div className="flex flex-col gap-3 p-6">
+                      <div className="flex flex-col gap-3 px-6 py-2">
                         <div className="
                           flex 
                           flex-row
@@ -175,6 +175,7 @@ const Modal: React.FC<ModalProps> = ({
                            onClick={handleSubmit}
                            />
                         </div>
+                        {footer}
                       </div>
                     </div>
                 </div>

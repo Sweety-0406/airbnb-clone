@@ -46,8 +46,8 @@ const Input:React.FC<InputProps>=({
                className={`
                 peer
                 w-full
-                p-4
-                pt-6
+                p-2
+                pt-4
                 font-light
                 bg-white
                 border-2
@@ -67,7 +67,7 @@ const Input:React.FC<InputProps>=({
                 duration-150
                 transform
                 -translate-y-3
-                top-5
+                top-3
                 z-10
                 origin-[0]
                 ${formatPrice ? 'left-9' : 'left-4'}
