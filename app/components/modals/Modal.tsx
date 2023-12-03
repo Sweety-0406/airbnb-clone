@@ -50,6 +50,7 @@ const Modal: React.FC<ModalProps> = ({
             return;
         }
         onSubmit();
+        
     },[disabled,onSubmit]);
 
     const handleSecondaryAction=useCallback(()=>{
@@ -63,9 +64,10 @@ const Modal: React.FC<ModalProps> = ({
 
 
     if(!isOpen){
+      console.log("iiii")
         return null;
     }
-
+    console.log("iiii22")
     return (
         <div 
         className="

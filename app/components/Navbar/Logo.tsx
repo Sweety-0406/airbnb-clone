@@ -8,7 +8,8 @@ const Logo=()=>{
     return (
         
             <Image
-            src='/images/logo.webp'
+            onClick={()=>router.push('/')}
+            src='/images/logo.png'
             alt='Logo' 
             height='50'
             width='50'
