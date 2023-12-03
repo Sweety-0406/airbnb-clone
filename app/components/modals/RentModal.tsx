@@ -1,216 +1,62 @@
-// 'use client'
+'use client'
 
-// import useRentModal from "@/app/hooks/useRentModal"
-// import Modal from "./Modal"
-// import { useMemo, useState } from "react";
-
-
-// enum STEPS{
-//     CATEGORY = 0,
-//     LOCATION = 1,
-//     INFO = 2,
-//     IMAGES = 3,
-//     DESCRIPTION = 4,
-//     PRICE = 5
-// }
-
-// const RentModal=()=>{
-//     const rentModal=useRentModal();
-
-//     // const [step,setStep]=useState(STEPS.CATEGORY);
-
-//     // const onBack=()=>{
-//     //     setStep((value)=>value-1);
-//     // };
-//     // const onNext=()=>{
-//     //     setStep((value)=>value+1);
-//     // };
-
-//     // const actionLabel = useMemo(()=>{
-//     //     if(step === STEPS.PRICE){
-//     //         return 'Create'
-//     //     }
-
-//     //     return 'Next'
-//     // },[step]);
-
-//     // const secondaryActionLabel=useMemo(()=>{
-//     //     if(step === STEPS.CATEGORY){
-//     //         return undefined;
-//     //     }
-
-//     //     return 'back'
-//     // },[])
-//     // console.log("huu")
-    
-//     return (
-//         <Modal
-//             isOpen={rentModal.isOpen}
-//             onClose={rentModal.onClose}
-//             onSubmit={rentModal.onClose}
-//             // actionLabel={actionLabel}
-//             // secondaryActionLabel={secondaryActionLabel}
-//             // secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}         
-//             title="Airbnb your home!" actionLabel={""}        />
-//     )
-// }
-
-// export default RentModal;
+import useRentModal from "@/app/hooks/useRentModal"
+import Modal from "./Modal"
+import { useMemo, useState } from "react";
 
 
+enum STEPS{
+    CATEGORY = 0,
+    LOCATION = 1,
+    INFO = 2,
+    IMAGES = 3,
+    DESCRIPTION = 4,
+    PRICE = 5
+}
 
-'use client';
+const RentModal=()=>{
+    const rentModal=useRentModal();
 
-import axios from "axios";
-import {useState,useEffect,useCallback} from 'react';
-import {AiFillGithub} from 'react-icons/ai';
-import {FcGoogle} from 'react-icons/fc';
-import { FieldValues,  SubmitHandler, useForm} from 'react-hook-form';
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import Modal from "./Modal";
-import Heading from '../Heading';
-import Input from "../Inputs/Input";
-import {toast} from "react-hot-toast";
-import Button from "../Button";
-import { signIn } from "next-auth/react";
-import useLoginModal from "@/app/hooks/useLoginModal";
+    const [step,setStep]=useState(STEPS.CATEGORY);
 
+    const onBack=()=>{
+        setStep((value)=>value-1);
+    };
+    const onNext=()=>{
+        setStep((value)=>value+1);
+    };
 
-
-const RegisterModal=()=>{
-    const [isLoading,setIsLoading]=useState(false)
-    const registerModal=useRegisterModal();
-    const loginModal=useLoginModal();
-    const{
-        register,
-        handleSubmit,
-        formState:{
-            errors,
+    const actionLabel = useMemo(()=>{
+        if(step === STEPS.PRICE){
+            return 'Create'
         }
-    }=useForm<FieldValues>({
-        defaultValues:{
-           name:'',
-            email:'',
-            password:''
+
+        return 'Next'
+    },[step]);
+
+    const secondaryActionLabel=useMemo(()=>{
+        if(step === STEPS.CATEGORY){
+            return undefined;
         }
-    });
 
-    const onSubmit:SubmitHandler<FieldValues>=(data)=>{
-        setIsLoading(true);
-
-        axios.post('/api/register',data)
-        .then(()=>{
-            toast.success('Successfully registered!',{
-                icon:'😊'
-            })
-            registerModal.onClose();
-        })
-        .catch((error)=>{
-            toast.error('Something went wrong...',{
-                icon:'🤷‍♀️'
-            });
-        })
-        .finally(()=>{
-            setIsLoading(false);
-        })
-    }
-
-    const toggle=useCallback(()=>{
-        registerModal.onClose();
-        loginModal.onOpen();
+        return 'back'
     },[])
-    const bodyContent=(
-        <div>
-            <Heading
-              title='Welcome to Airbnb'
-              subtitle='Create an account'
-              
-             />
-             <Input 
-              id={"email"}
-              label={"Email"} 
-              disabled={isLoading}
-              errors={errors}   
-              register={register}   
-              required          
-             />
-             <Input 
-              id={"name"}
-              label={"Username"} 
-              disabled={isLoading}
-              errors={errors}   
-              register={register}   
-              required          
-             />
-             <Input 
-              id={"password"}
-              label={"Password"} 
-              type='password'
-              disabled={isLoading}
-              errors={errors}   
-              register={register}   
-              required          
-             />
-        </div>
-    )
-    const footerContent=(
-        <div className="flex flex-col gap-4 mt-3">
-            <hr />
-            <Button
-              outline
-              label="Continue with Google"
-              icon={FcGoogle}
-              onClick={()=>signIn('google')} 
-            />
-            <Button
-              outline
-              label="Continue with Github"
-              icon={AiFillGithub}
-              onClick={()=>signIn('github')} 
-            />
-            <div className="
-             text-neutral-500
-             text-center
-             mt-4
-             font-light
-            ">
-                <div className="
-                  justify-center
-                  flex
-                  flex-row
-                  items-center
-                  gap-2
-                ">
-                    <div>
-                      Already have an account?
-                    </div>
-                    <div
-                      onClick={toggle}
-                      className="
-                      text-neutral-800
-                      cursor-pointer
-                      hover:underline
-                    ">
-                       Log in
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+    console.log("huu")
+    
     return (
-        <div>
-          <Modal
-                onClose={registerModal.onClose}
-                onSubmit={handleSubmit(onSubmit)}
-                isOpen={registerModal.isOpen}
-                actionLabel={"Continue"}
-                disabled={isLoading}
-                title='Register'   
-                body={bodyContent}     
-                footer={footerContent}    
-          />
-        </div>
+        <Modal
+            isOpen={rentModal.isOpen}
+            onClose={rentModal.onClose}
+            onSubmit={rentModal.onClose}
+            actionLabel={actionLabel}
+             secondaryActionLabel={secondaryActionLabel}
+             secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}         
+            title="Airbnb your home!"      />
     )
 }
 
-export default RegisterModal;
+export default RentModal;
+
+
+
+
