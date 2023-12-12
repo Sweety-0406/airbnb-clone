@@ -7,6 +7,7 @@ import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { safeUser } from "@/app/types";
 import Categories from "./Categories";
+import RentModal from "../modals/RentModal";
 
 interface NavbarProps{
     currentUser?: safeUser | null;
@@ -34,10 +35,13 @@ const Navbar:React.FC<NavbarProps>=({currentUser})=>{
                       <Logo/>
                       <Search/>
                       <UserMenu currentUser={currentUser} />
+                     
                     </div>
                 </Container>
             </div>
             <Categories />
+            
+            
         </div>
     )
 }

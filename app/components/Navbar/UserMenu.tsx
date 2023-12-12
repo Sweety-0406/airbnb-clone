@@ -9,6 +9,9 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { safeUser } from '@/app/types';
+import RentModal from '../modals/RentModal';
+
+
 
 interface UserMenuProps{
   currentUser?:safeUser | null;
@@ -28,11 +31,13 @@ const  UserMenu:React.FC<UserMenuProps>=({currentUser})=>{
       if(!currentUser){
         return loginModal.onOpen();
       }
-      console.log('hey...')
+      
       rentModal.onOpen();
-      // console.log('hey2...')
+      
       
     },[currentUser,loginModal,rentModal])
+    
+    
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -51,6 +56,7 @@ const  UserMenu:React.FC<UserMenuProps>=({currentUser})=>{
                     cursor-pointer
                   "
                 >
+                 <RentModal/>
                   Airbnb your home
                 </div>
                 <div 
@@ -110,7 +116,7 @@ const  UserMenu:React.FC<UserMenuProps>=({currentUser})=>{
                               label='My properties'
                             />
                             <MenuItem 
-                              onClick={onRent}
+                              onClick={rentModal.onOpen}
                               // onClick={rentModal.onOpen}
                               label='Airbnb my home'
                             />

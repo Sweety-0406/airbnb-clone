@@ -64,10 +64,10 @@ const Modal: React.FC<ModalProps> = ({
 
 
     if(!isOpen){
-      console.log("iiii")
+     
         return null;
     }
-    console.log("iiii22")
+    
     return (
         <div 
         className="
@@ -116,8 +116,7 @@ const Modal: React.FC<ModalProps> = ({
                       rounded-lg
                       shadow-lg
                       relative
-                      w-[60%]
-                      md:w-full
+                      w-full
                       bg-white
                       outline-none
                       focus:outline-none
@@ -165,6 +164,7 @@ const Modal: React.FC<ModalProps> = ({
                         ">
                           {secondaryAction && secondaryActionLabel && (
                             <Button 
+                            outline
                             disabled={disabled}
                             label={secondaryActionLabel}
                             onClick={handleSecondaryAction}
@@ -172,6 +172,7 @@ const Modal: React.FC<ModalProps> = ({
                           )}
 
                           <Button 
+                           outline={false} 
                            disabled={disabled}
                            label={actionLabel}
                            onClick={handleSubmit}
