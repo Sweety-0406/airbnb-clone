@@ -1,7 +1,7 @@
 import prisma from '@/app/libs/prismadb';
 import { NextResponse } from 'next/server';
 import getCurrentUser from '@/app/action/getCurrentUser';
-import { lightFormat } from 'date-fns';
+
 
 interface IParams{
     listingId: string
