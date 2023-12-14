@@ -27,7 +27,7 @@ const router = useRouter();
   ) => {
     e.stopPropagation();
     if(!currentUser){
-        loginMadal.onOpen();
+       return loginMadal.onOpen();
     } 
     try{
         let request;

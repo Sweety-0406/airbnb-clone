@@ -19,7 +19,9 @@ const HeartButton:React.FC<HeartButtonProps>=({
     })
 
     return(
-        <div className="
+        <div 
+         onClick={toggleFavorite}
+         className="
          relative
          hover:opacity-80
          transition

@@ -24,7 +24,7 @@ const ListingCard:React.FC<ListingCardProps>=({
     reservation,
     onAction,
     disabled,
-    actionId="",
+    actionId='',
     actionlabel,
     currentUser
 
