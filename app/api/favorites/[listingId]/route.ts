@@ -24,7 +24,7 @@ export async function POST(
 
      const user = await prisma.user.update({
         where:{
-            id : listingId
+            id : currentUser.id
         },
         data :{ 
             favoriteIds  // favoriteIds:favoriteIds (both are same)

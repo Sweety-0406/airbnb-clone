@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { safeUser } from "../types";
+import { SafeUser } from "../types";
 import useLoginModal from "./useLoginModal";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 interface IUseFavorite{
     listingId:string;
-    currentUser?:safeUser | null;
+    currentUser?:SafeUser | null;
 }
 
 const useFavorite=({
@@ -32,6 +32,7 @@ const router = useRouter();
     try{
         let request;
         if(hasFavorited){
+          
           request = () => axios.delete(`/api/favorites/${listingId}`)  
         }else{
             request = () => axios.post(`/api/favorites/${listingId}`)  
@@ -39,7 +40,7 @@ const router = useRouter();
 
         await request();
         router.refresh();
-        toast.success("This is added to your favorite list.")
+        toast.success("Successful.")
     }catch(error){
         toast.error("Something went wrong...")
     }

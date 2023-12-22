@@ -5,9 +5,14 @@ export async function getListings() {
       const listings = await prisma.listing.findMany({
         orderBy:{
             createdAt:'desc'
-        }
+        } 
       })  
-      return listings;
+
+      const safeListings = listings.map((listing)=>({
+        ...listing,
+        createdAt:listing.createdAt.toISOString()
+      }))
+      return safeListings;
     } catch (error:any) {
       console.log(error)
        throw new Error(error); 
