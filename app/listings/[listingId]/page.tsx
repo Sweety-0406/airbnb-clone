@@ -6,7 +6,7 @@ import ListingClient from "./ListingClient";
 import getReservations from "@/app/action/getReservations";
 
 interface Iparams{
-    listingId:string
+    listingId?:string
 }
 const ListingPage=async ({params}:{params : Iparams})=>{
 
